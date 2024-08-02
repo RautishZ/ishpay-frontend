@@ -1,7 +1,10 @@
 {
   "name": "com.ishpay",
-  "private": true,
-  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
