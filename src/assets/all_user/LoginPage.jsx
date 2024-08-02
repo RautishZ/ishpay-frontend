@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../../services/API";
 import Footer from "./Footer";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../features/userDetailsSlice";
-import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -15,6 +14,7 @@ function LoginPage() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(""); // State to track login errors
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,21 +28,25 @@ function LoginPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.removeItem("jwtToken");
-    API.post("/login", loginDetails)
-      .then((response) => {
-        if (response.data.token != null) {
-          localStorage.setItem("jwtToken", response.data.token);
-        }
+    setError(""); // Reset error message
 
+    try {
+      localStorage.removeItem("jwtToken");
+      const response = await API.post("/login", loginDetails);
+
+      if (response.data.token) {
+        localStorage.setItem("jwtToken", response.data.token);
         dispatch(setUserDetails(response.data));
         navigate("/home");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      } else {
+        setError("Invalid email or password."); // Set error message
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again later."); // Set error message
+      console.error(error);
+    }
   };
 
   return (
@@ -77,6 +81,9 @@ function LoginPage() {
             className="font-semibold text-ishprimary"
             onSubmit={handleSubmit}
           >
+            {error && (
+              <div className="mb-4 text-red-600 text-center">{error}</div>
+            )}
             <div className="mb-8">
               <label
                 htmlFor="email"
