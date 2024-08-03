@@ -80,7 +80,7 @@ function ProfileNav() {
 
   return (
     <div>
-      <div className="pt-[72px]"></div>
+      <div className="pt-[80px]"></div>
       <div className="fixed top-0 left-0 w-full z-50 h-[80px] bg-ishprimary shadow-lg flex justify-between items-center px-4 py-2 sm:px-6 md:px-8 lg:px-20">
         <div className="flex items-center">
           <RiMenuFold2Fill

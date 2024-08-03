@@ -21,6 +21,7 @@ import IdentityVerification from "./assets/login_user/IdentityVerification";
 
 // Importing payment components
 import MobileRecharge from "./assets/login_user/payments/MobileRecharge";
+import SelectDetails from "./assets/login_user/train_services/SelectDetails";
 
 // Layout for pages that include the NavBar and WelcomeMessage
 const MainLayout = () => (
@@ -142,6 +143,21 @@ const router = createBrowserRouter([
   {
     path: "identity-verification",
     element: <IdentityVerification />,
+  },
+
+  {
+    path: "train-booking",
+    element: (
+      <>
+        <DashboardLayout />
+        <SelectDetails></SelectDetails>,
+      </>
+    ),
+  },
+
+  {
+    path: "*",
+    element: <h1>404 Not Found</h1>,
   },
 ]);
 
