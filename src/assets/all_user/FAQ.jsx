@@ -89,7 +89,7 @@ function FAQ() {
       answer: (
         <ul className="list-disc pl-5">
           <li>Chat Support</li>
-          <li>Call Support: 8048152380</li>
+          <li>Call Support: 8540891176</li>
           <li>Email Support: support@ishpay.com</li>
         </ul>
       ),

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import myImage from "../../assets/profile_image/m3.jpg";
 import { RiMenuFold2Fill, RiNotification2Fill } from "react-icons/ri";
-import SideBar from "./SideBar";
+import SideBar from "../profile_image/SideBar";
 import "./ProfileNav.css";
 import { useSelector } from "react-redux";
 import ProfileNavMenu from "./ProfileNavMenu";
