@@ -49,6 +49,11 @@ function Footer() {
             Terms & Conditions
           </Link>
         </li>
+        <li>
+          <Link to="/refund-policy" className={linkClassName("/refund-policy")}>
+            Refund Policy
+          </Link>
+        </li>
 
         {/* Add more footer links as needed */}
       </ul>

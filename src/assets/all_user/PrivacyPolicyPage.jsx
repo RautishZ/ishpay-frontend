@@ -3,13 +3,12 @@ import { FaPhone, FaEnvelope, FaInstagram } from "react-icons/fa";
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold p-4 text-center bg-secondary-100 rounded-t-lg">
         Privacy Policy
       </h1>
-      <div className="bg-white p-6 rounded-b-lg shadow-lg">
+      <div className="bg-white p-3 rounded-b-lg shadow-lg text-justify">
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
           <p className="text-lg text-gray-700">
             This Privacy Policy governs the manner in which IshPay collects,
             uses, maintains, and discloses information collected from users of
@@ -19,8 +18,10 @@ const PrivacyPolicyPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">General Terms</h2>
-          <ul className="list-disc list-inside pl-5 text-gray-700">
+          <h2 className="text-2xl font-semibold mb-2 border-b-2 border-gray-200 pb-2">
+            General Terms
+          </h2>
+          <ul className="list-disc list-inside pl-4 text-gray-700">
             <li>
               <strong>Legal Compliance:</strong> IshPay operates under the
               provisions of the Information Technology Act, 2000 and other
@@ -66,10 +67,10 @@ const PrivacyPolicyPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="text-2xl font-semibold mb-2 border-b-2 border-gray-200 pb-2">
             Collection of Personal Information
           </h2>
-          <ul className="list-disc list-inside pl-5 text-gray-700">
+          <ul className="list-disc list-inside pl-4 text-gray-700">
             <li>
               <strong>Information We Collect:</strong> IshPay may collect
               personal identification information from Users in various ways,
@@ -132,8 +133,10 @@ const PrivacyPolicyPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Data Security</h2>
-          <ul className="list-disc list-inside pl-5 text-gray-700">
+          <h2 className="text-2xl font-semibold mb-2 border-b-2 border-gray-200 pb-2">
+            Data Security
+          </h2>
+          <ul className="list-disc list-inside pl-4 text-gray-700">
             <li>
               <strong>Data Security Measures:</strong> IshPay implements robust
               security measures to protect Users' personal information from
@@ -167,10 +170,10 @@ const PrivacyPolicyPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="text-2xl font-semibold mb-2 border-b-2 border-gray-200 pb-2">
             Sharing of Personal Information
           </h2>
-          <ul className="list-disc list-inside pl-5 text-gray-700">
+          <ul className="list-disc list-inside pl-4 text-gray-700">
             <li>
               <strong>Third-Party Service Providers:</strong> IshPay may share
               Users' personal information with trusted third-party service
@@ -209,7 +212,9 @@ const PrivacyPolicyPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Identity Verification</h2>
+          <h2 className="text-2xl font-semibold mb-2 border-b-2 border-gray-200 pb-2">
+            Identity Verification
+          </h2>
           <p className="text-lg text-gray-700">
             At IshPay, we prioritize the security of our users and the integrity
             of our payment platform. As part of our compliance with Indian law,
@@ -217,10 +222,10 @@ const PrivacyPolicyPage = () => {
             verification process helps us maintain a secure and trustworthy
             environment for all our users.
           </p>
-          <ul className="list-disc list-inside pl-5 text-gray-700">
+          <ul className="list-disc list-inside pl-4 text-gray-700">
             <li>
               <strong>Why We Verify Your Identity:</strong>
-              <ul className="list-disc list-inside pl-5">
+              <ul className="list-disc list-inside pl-6 text-gray-600">
                 <li>
                   <strong>Legal Compliance:</strong> Adhering to Indian
                   regulations is essential to our operations. By verifying your
@@ -243,7 +248,7 @@ const PrivacyPolicyPage = () => {
             </li>
             <li>
               <strong>What Information We Collect:</strong>
-              <ul className="list-disc list-inside pl-5">
+              <ul className="list-disc list-inside pl-6 text-gray-600">
                 <li>
                   <strong>Government-Issued ID:</strong> Such as an Aadhaar
                   card, passport, or driver's license.
@@ -260,7 +265,7 @@ const PrivacyPolicyPage = () => {
             </li>
             <li>
               <strong>How We Protect Your Information:</strong>
-              <ul className="list-disc list-inside pl-5">
+              <ul className="list-disc list-inside pl-6 text-gray-600">
                 <li>
                   <strong>Data Encryption:</strong> All personal data is
                   encrypted to safeguard it from unauthorized access.
@@ -278,7 +283,7 @@ const PrivacyPolicyPage = () => {
             </li>
             <li>
               <strong>The Verification Process:</strong>
-              <ul className="list-disc list-inside pl-5">
+              <ul className="list-disc list-inside pl-6 text-gray-600">
                 <li>
                   <strong>Submit Your Information:</strong> Provide the required
                   documents and information through our secure submission
@@ -298,8 +303,10 @@ const PrivacyPolicyPage = () => {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Need Help?</h2>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-2 border-b-2 border-gray-200 pb-2">
+            Need Help?
+          </h2>
           <div className="flex items-center space-x-4 text-gray-700 mb-2">
             <FaPhone className="text-xl" />
             <span>
@@ -316,10 +323,10 @@ const PrivacyPolicyPage = () => {
               support@ishpay.com
             </a>
           </div>
-          <div className="flex items-center space-x-4 mb-4 text-gray-700">
+          <div className="flex items-center space-x-4 mb-2 text-gray-700">
             <FaInstagram className="text-xl" />
             <a
-              href="https://www.instagram.com/ishpay"
+              href="https://www.instagram.com/ish.pay"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline"

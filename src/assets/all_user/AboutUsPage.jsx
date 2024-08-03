@@ -3,13 +3,13 @@ import { FaPhone, FaEnvelope, FaInstagram } from "react-icons/fa";
 
 const AboutUsPage = () => {
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold p-4 text-center bg-secondary-100 rounded-t-lg">
         About Us
       </h1>
-      <div className="bg-white p-6 rounded-b-lg shadow-lg">
+      <div className="bg-white p-3 rounded-b-lg shadow-lg">
         <section className="mb-8">
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 mb-6">
             At IshPay, we believe managing your money should be easy and
             stress-free. Whether you need to transfer funds, pay bills, or
             handle various financial tasks, we have you covered. Our platform
@@ -19,10 +19,12 @@ const AboutUsPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">What We Offer</h2>
-          <div className="space-y-4">
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            What We Offer
+          </h2>
+          <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-medium">Payments</h3>
+              <h3 className="text-xl font-medium mb-2">Payments</h3>
               <ul className="list-disc list-inside pl-5 text-gray-700">
                 <li>
                   <strong>Bank Payment:</strong> Effortlessly move money from
@@ -34,16 +36,18 @@ const AboutUsPage = () => {
                   any hassle.
                 </li>
                 <li>
-                  <strong>Rent Payment</strong>
+                  <strong>Rent Payment:</strong> Pay your rent easily and on
+                  time.
                 </li>
                 <li>
-                  <strong>Education Payment</strong>
+                  <strong>Education Payment:</strong> Manage your education
+                  expenses conveniently.
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-medium">Bill Payments</h3>
+              <h3 className="text-xl font-medium mb-2">Bill Payments</h3>
               <ul className="list-disc list-inside pl-5 text-gray-700">
                 <li>
                   <strong>Mobile Recharge:</strong> Recharge your mobile with
@@ -81,7 +85,7 @@ const AboutUsPage = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-medium">
+              <h3 className="text-xl font-medium mb-2">
                 Booking Services Coming Soon
               </h3>
               <ul className="list-disc list-inside pl-5 text-gray-700">
@@ -107,7 +111,9 @@ const AboutUsPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Why Choose IshPay?</h2>
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            Why Choose IshPay?
+          </h2>
           <ul className="list-disc list-inside pl-5 text-gray-700">
             <li>
               <strong>User-Friendly Platform:</strong> Our intuitive design
@@ -125,23 +131,29 @@ const AboutUsPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
             Need Help or Have Questions?
           </h2>
-          <div className="flex items-center space-x-4 text-gray-700">
+          <div className="flex items-center space-x-4 text-gray-700 mb-4">
             <FaPhone className="text-xl" />
             <span>Customer Service: +91-8540891176 (10 AM to 5 PM)</span>
           </div>
-          <div className="flex items-center space-x-4 mt-2 text-gray-700">
+          <div className="flex items-center space-x-4 text-gray-700 mb-4">
             <FaEnvelope className="text-xl" />
-            <a href="mailto:support@ishpay.com">support@ishpay.com</a>
+            <a
+              href="mailto:support@ishpay.com"
+              className="text-blue-500 hover:underline"
+            >
+              support@ishpay.com
+            </a>
           </div>
-          <div className="flex items-center space-x-4 mt-2 text-gray-700">
+          <div className="flex items-center space-x-4 text-gray-700">
             <FaInstagram className="text-xl" />
             <a
               href="https://www.instagram.com/ish.pay"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
             >
               Follow us on Instagram
             </a>

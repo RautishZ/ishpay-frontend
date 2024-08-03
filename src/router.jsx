@@ -22,6 +22,7 @@ import IdentityVerification from "./assets/login_user/IdentityVerification";
 // Importing payment components
 import MobileRecharge from "./assets/login_user/payments/MobileRecharge";
 import SelectDetails from "./assets/login_user/train_services/SelectDetails";
+import RefundPolicyPage from "./assets/all_user/RefundPolicyPage";
 
 // Layout for pages that include the NavBar and WelcomeMessage
 const MainLayout = () => (
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "privacy-policy",
         element: <PrivacyPolicyPage />,
+      },
+      {
+        path: "Refund-Policy",
+        element: <RefundPolicyPage />,
       },
     ],
   },

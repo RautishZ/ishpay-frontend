@@ -3,7 +3,7 @@ import { FaPhone, FaEnvelope, FaInstagram } from "react-icons/fa";
 
 const ContactUsPage = () => {
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold p-4 text-center bg-secondary-100 rounded-t-lg">
         Contact Us
       </h1>
@@ -15,8 +15,10 @@ const ContactUsPage = () => {
         </p>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Customer Service</h2>
-          <div className="flex items-center space-x-4 mb-2 text-gray-700">
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            Customer Service
+          </h2>
+          <div className="flex items-center space-x-4 mb-4 text-gray-700">
             <FaPhone className="text-xl" />
             <span>
               Phone: +91-8540891176 (Available from 10 AM to 5 PM, Monday to
@@ -35,11 +37,13 @@ const ContactUsPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Social Media</h2>
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            Social Media
+          </h2>
           <div className="flex items-center space-x-4 text-gray-700">
             <FaInstagram className="text-xl" />
             <a
-              href="https://www.instagram.com/ishpay"
+              href="https://www.instagram.com/ish.pay"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline"
@@ -50,14 +54,18 @@ const ContactUsPage = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Office Address</h2>
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            Office Address
+          </h2>
           <p className="text-lg text-gray-700">
             Chandi Road, Harnaut, Nalanda, Bihar, 803110
           </p>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Business Hours</h2>
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            Business Hours
+          </h2>
           <ul className="list-disc list-inside pl-5 text-gray-700">
             <li>
               <strong>Monday to Saturday:</strong> 10 AM to 5 PM
@@ -68,7 +76,7 @@ const ContactUsPage = () => {
           </ul>
         </section>
 
-        <section className="mt-8">
+        <section>
           <p className="text-lg text-gray-700">
             We look forward to assisting you and ensuring your experience with
             IshPay is smooth and satisfactory. Thank you for choosing IshPay!
