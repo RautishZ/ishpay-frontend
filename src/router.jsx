@@ -23,6 +23,7 @@ import IdentityVerification from "./assets/login_user/IdentityVerification";
 import MobileRecharge from "./assets/login_user/payments/MobileRecharge";
 import SelectDetails from "./assets/login_user/train_services/SelectDetails";
 import RefundPolicyPage from "./assets/all_user/RefundPolicyPage";
+import EmailVerification from "./assets/all_user/EmailVerification";
 
 // Layout for pages that include the NavBar and WelcomeMessage
 const MainLayout = () => (
@@ -90,6 +91,14 @@ const router = createBrowserRouter([
     element: (
       <CheckLoginStatus>
         <SignUpPage />
+      </CheckLoginStatus>
+    ),
+  },
+  {
+    path: "email-verification",
+    element: (
+      <CheckLoginStatus>
+        <EmailVerification />
       </CheckLoginStatus>
     ),
   },

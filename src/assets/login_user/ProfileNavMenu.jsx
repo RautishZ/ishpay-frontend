@@ -14,7 +14,7 @@ function ProfileNavMenu() {
           className="p-2 text-lg"
           onClick={() => {
             localStorage.removeItem("jwtToken");
-            window.location.reload();
+            window.location.href = "/";
           }}
         >
           Logout

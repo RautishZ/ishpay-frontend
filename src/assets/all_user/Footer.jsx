@@ -22,7 +22,7 @@ function Footer() {
 
   return (
     <footer className="relative bottom-0 mt-5 text-center text-md bg-ishprimary min-h-[100px] flex flex-col justify-center items-center gap-4 text-white p-4">
-      <ul className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-10">
+      <ul className="flex flex-col md:flex-row justify-center space-y-2 sm:space-y-0 md:space-x-10">
         <li>
           <Link to="/about-us" className={linkClassName("/about-us")}>
             About Us

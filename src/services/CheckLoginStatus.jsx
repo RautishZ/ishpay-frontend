@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserDetails } from "../features/userDetailsSlice";
 import { useNavigate, Navigate } from "react-router-dom";
 import API from "./API";
+import LoadingScreen from "./LoadingScreen";
 
-function CheckLoginStatus({ children }) {
+const CheckLoginStatus = ({ children }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,53 +14,39 @@ function CheckLoginStatus({ children }) {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        // Redirect authenticated users from login or signup to dashboard
+        const token = localStorage.getItem("jwtToken");
+        if (token && !userDetails.isAuthenticated) {
+          const response = await API.post("/login", {});
+          console.log(response.data);
+          if (response.data.token) {
+            localStorage.setItem("jwtToken", response.data.token);
+          }
+          dispatch(setUserDetails(response.data));
+        }
+
         if (userDetails.isAuthenticated) {
           if (
-            window.location.pathname === "/login" ||
-            window.location.pathname === "/signup"
+            !userDetails.userDetails.emailVerified &&
+            window.location.pathname !== "/email-verification"
           ) {
+            navigate("/email-verification");
+          } else if (["/login", "/signup"].includes(window.location.pathname)) {
             navigate("/home");
-            return;
-          }
-        } else {
-          const token = localStorage.getItem("jwtToken");
-          if (token) {
-            const response = await API.post("/login", { token });
-            if (response.data.token) {
-              localStorage.setItem("jwtToken", response.data.token);
-              dispatch(setUserDetails(response.data));
-            } else {
-              localStorage.removeItem("jwtToken");
-              navigate("/login");
-              return;
-            }
-          } else {
-            localStorage.removeItem("jwtToken");
-            if (
-              window.location.pathname !== "/login" &&
-              window.location.pathname !== "/signup"
-            ) {
-              navigate("/login");
-              return;
-            }
           }
         }
       } catch (error) {
-        console.error("Authentication error:", error); // Log error for debugging
-        localStorage.removeItem("jwtToken");
+        console.error("Authentication error:", error);
         navigate("/login");
-        return;
       } finally {
         setIsLoading(false);
       }
     };
 
     checkAuthStatus();
-  }, [userDetails.isAuthenticated, dispatch, navigate]);
+  }, [userDetails, dispatch, navigate]);
 
   if (isLoading) {
-    return null; // Render nothing while checking auth status
+    return <LoadingScreen />;
   }
 
   if (
@@ -71,13 +58,12 @@ function CheckLoginStatus({ children }) {
 
   if (
     userDetails.isAuthenticated &&
-    (window.location.pathname === "/login" ||
-      window.location.pathname === "/signup")
+    ["/login", "/signup"].includes(window.location.pathname)
   ) {
     return <Navigate to="/home" />;
   }
 
   return children;
-}
+};
 
 export default CheckLoginStatus;

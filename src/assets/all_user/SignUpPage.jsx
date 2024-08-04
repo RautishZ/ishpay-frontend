@@ -6,12 +6,14 @@ import {
   FaEyeSlash,
   FaSpinner,
 } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import API from "../../services/API";
 import Footer from "./Footer";
+import { toast } from "react-toastify";
 
 function SignUpPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const initialEmail = location.state?.email || "";
 
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +23,7 @@ function SignUpPage() {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
 
   const passwordInputRef = useRef(null);
 
@@ -60,10 +62,7 @@ function SignUpPage() {
       }
     }
 
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: errorMsg,
-    }));
+    return errorMsg;
   };
 
   const handleChange = (e) => {
@@ -73,47 +72,46 @@ function SignUpPage() {
       [name]: value,
     }));
 
-    if (name === "password") {
-      setConfirmPassword(confirmPassword); // Trigger validation for confirmPassword if password changes
-    }
+    const errorMsg = validateField(name, value);
 
-    validateField(name, value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMsg,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
+    // Validate all fields
     ["email", "password", "confirmPassword"].forEach((key) => {
-      if (key === "confirmPassword") {
-        validateField(key, confirmPassword);
-      } else {
-        validateField(key, signupDetails[key]);
-      }
+      const value =
+        key === "confirmPassword" ? confirmPassword : signupDetails[key];
+      const errorMsg = validateField(key, value);
+      if (errorMsg) newErrors[key] = errorMsg;
     });
-
-    if (!confirmPassword) {
-      newErrors.confirmPassword = "Confirm Password is required";
-    } else if (signupDetails.password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      setLoading(true); // Set loading to true
+      setLoading(true);
       try {
         const response = await API.post("/register", signupDetails);
-        if (response.data.token != null) {
+        toast.success("Account created successfully!");
+        if (response.data.token) {
           localStorage.setItem("jwtToken", response.data.token);
-          window.location.href = "/login";
         }
-        // Handle success
+
+        navigate("/home");
       } catch (error) {
-        console.error(error);
-        // Handle error
+        if (error.response?.data === "User already exists") {
+          setErrors({ email: "User already exists" });
+        } else {
+          toast.error("An error occurred while creating the account.");
+        }
       } finally {
-        setLoading(false); // Set loading to false after request completes
+        setLoading(false);
       }
     }
   };
@@ -153,6 +151,17 @@ function SignUpPage() {
             </div>
           )}
 
+          {/* Error messages at the top */}
+          {Object.keys(errors).length > 0 && (
+            <div className="text-red-700 mb-4 rounded-md text-center font-semibold">
+              <ul>
+                {Object.values(errors).map((error, index) => (
+                  <li key={index}>{error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <form
             className={`font-semibold text-ishprimary ${
               loading ? "opacity-50" : ""
@@ -165,9 +174,6 @@ function SignUpPage() {
                 className="text-xl mb-2 block text-ishprimary"
               >
                 Email
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                )}
               </label>
               <div className="relative">
                 <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl" />
@@ -188,9 +194,6 @@ function SignUpPage() {
                 className="text-xl mb-2 block text-ishprimary"
               >
                 Password
-                {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                )}
               </label>
               <div className="relative">
                 <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl" />
@@ -199,7 +202,7 @@ function SignUpPage() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Password"
                   name="password"
-                  className={`border-b-4 py-2 pl-12 pr-5 text-ishprimary text-xl rounded-md w-full focus:border-ishprimary outline-none `}
+                  className={`border-b-4 py-2 pl-12 pr-5 text-ishprimary text-xl rounded-md w-full focus:border-ishprimary outline-none`}
                   value={signupDetails.password}
                   onChange={handleChange}
                   ref={passwordInputRef}
@@ -222,11 +225,6 @@ function SignUpPage() {
                 className="text-xl mb-2 block text-ishprimary"
               >
                 Confirm Password
-                {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.confirmPassword}
-                  </p>
-                )}
               </label>
               <div className="relative">
                 <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl" />
@@ -235,11 +233,18 @@ function SignUpPage() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Confirm Password"
                   name="confirmPassword"
-                  className={`border-b-4 py-2 pl-12 pr-5 text-ishprimary text-xl rounded-md w-full focus:border-ishprimary outline-none `}
+                  className={`border-b-4 py-2 pl-12 pr-5 text-ishprimary text-xl rounded-md w-full focus:border-ishprimary outline-none`}
                   value={confirmPassword}
                   onChange={(e) => {
                     setConfirmPassword(e.target.value);
-                    validateField("confirmPassword", e.target.value);
+                    const errorMsg = validateField(
+                      "confirmPassword",
+                      e.target.value
+                    );
+                    setErrors((prevErrors) => ({
+                      ...prevErrors,
+                      confirmPassword: errorMsg,
+                    }));
                   }}
                 />
               </div>
@@ -248,9 +253,9 @@ function SignUpPage() {
             <button
               type="submit"
               className="bg-ishprimary w-full text-white py-3 px-4 rounded-md text-lg font-bold hover:bg-ishprimary-600"
-              disabled={loading} // Disable button while loading
+              disabled={loading}
             >
-              "Sign Up"
+              Sign Up
             </button>
           </form>
         </div>
