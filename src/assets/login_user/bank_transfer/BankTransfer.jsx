@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import PaymentMode from "../PaymentMode";
+import PaymentMode from "./PaymentMode";
 import BeneficiaryList from "./BeneficiaryList";
 import BillingDetails from "./BillingDetails";
 import AmountInput from "./AmountInput";

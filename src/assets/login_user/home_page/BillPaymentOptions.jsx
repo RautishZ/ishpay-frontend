@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css"; // Optional: for blur effect on loading
+
 import mobile_recharge from "../../../../public/mobile_recharge.png";
 import electricity_bill from "../../../../public/electricity_bill.png";
 import water_bill from "../../../../public/water_bill.png";
@@ -34,7 +37,12 @@ const paymentOptions = [
     label: "Gas Bill",
     to: "/bill-payment/gas-bill",
   },
-  { src: fastag, alt: "Fastag", label: "Fastag", to: "/bill-payment/fastag" },
+  {
+    src: fastag,
+    alt: "Fastag",
+    label: "Fastag",
+    to: "/bill-payment/fastag",
+  },
   {
     src: insurance_payment,
     alt: "Insurance Payment",
@@ -70,8 +78,13 @@ function BillPaymentOptions() {
             className="flex flex-col items-center cursor-pointer w-full h-24"
           >
             <div className="transition-transform transform hover:scale-110 flex flex-col items-center justify-center w-full h-full">
-              <img src={src} alt={alt} className="w-12 h-12 object-contain" />{" "}
-              {/* Adjusted size */}
+              <LazyLoadImage
+                src={src}
+                alt={alt}
+                effect="blur" // Optional: add a blur effect on loading
+                className="w-12 h-12 object-contain"
+                loading="lazy" // Native lazy loading
+              />
               <h1 className="font-semibold mt-2 text-center text-sm">
                 {label}
               </h1>
