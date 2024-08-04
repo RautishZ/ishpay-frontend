@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaSpinner,
+} from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import API from "../../services/API";
 import Footer from "./Footer";
-import { comment } from "postcss";
 
 function SignUpPage() {
   const location = useLocation();
@@ -16,6 +21,7 @@ function SignUpPage() {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const passwordInputRef = useRef(null);
 
@@ -74,7 +80,7 @@ function SignUpPage() {
     validateField(name, value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -95,19 +101,20 @@ function SignUpPage() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log(signupDetails);
-      API.post("/register", signupDetails)
-        .then((response) => {
-          if (response.data.token != null) {
-            localStorage.setItem("jwtToken", response.data.token);
-            window.location.href = "/login";
-          }
-          // Handle success, e.g., redirect to login page or show success message
-        })
-        .catch((error) => {
-          console.error(error);
-          // Handle error, e.g., show error message
-        });
+      setLoading(true); // Set loading to true
+      try {
+        const response = await API.post("/register", signupDetails);
+        if (response.data.token != null) {
+          localStorage.setItem("jwtToken", response.data.token);
+          window.location.href = "/login";
+        }
+        // Handle success
+      } catch (error) {
+        console.error(error);
+        // Handle error
+      } finally {
+        setLoading(false); // Set loading to false after request completes
+      }
     }
   };
 
@@ -132,7 +139,7 @@ function SignUpPage() {
       </div>
 
       <div className="flex justify-center items-center">
-        <div className="bg-white p-3 sm:p-8 m-2 rounded-md shadow-xl max-w-lg w-full">
+        <div className="bg-white p-3 sm:p-8 m-2 rounded-md shadow-xl max-w-lg w-full relative">
           <h1 className="text-3xl font-bold mb-2 text-center text-ishprimary">
             Create your Account
           </h1>
@@ -140,8 +147,16 @@ function SignUpPage() {
             Enter Your Details To Sign Up
           </h2>
 
+          {loading && (
+            <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 rounded-md">
+              <FaSpinner className="animate-spin text-3xl text-ishprimary" />
+            </div>
+          )}
+
           <form
-            className="font-semibold text-ishprimary"
+            className={`font-semibold text-ishprimary ${
+              loading ? "opacity-50" : ""
+            }`}
             onSubmit={handleSubmit}
           >
             <div className="mb-8">
@@ -233,8 +248,9 @@ function SignUpPage() {
             <button
               type="submit"
               className="bg-ishprimary w-full text-white py-3 px-4 rounded-md text-lg font-bold hover:bg-ishprimary-600"
+              disabled={loading} // Disable button while loading
             >
-              Sign Up
+              "Sign Up"
             </button>
           </form>
         </div>

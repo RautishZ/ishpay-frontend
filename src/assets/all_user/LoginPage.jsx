@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaSpinner,
+} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../../services/API";
 import Footer from "./Footer";
@@ -14,7 +20,8 @@ function LoginPage() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(""); // State to track login errors
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,7 +37,8 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error message
+    setError("");
+    setLoading(true); // Set loading to true
 
     try {
       localStorage.removeItem("jwtToken");
@@ -41,11 +49,13 @@ function LoginPage() {
         dispatch(setUserDetails(response.data));
         navigate("/home");
       } else {
-        setError("Invalid email or password."); // Set error message
+        setError("Invalid email or password.");
       }
     } catch (error) {
-      setError("An error occurred. Please try again later."); // Set error message
+      setError("An error occurred. Please try again later.");
       console.error(error);
+    } finally {
+      setLoading(false); // Set loading to false after request completes
     }
   };
 
@@ -69,7 +79,7 @@ function LoginPage() {
       </div>
 
       <div className="flex justify-center items-center">
-        <div className="bg-white p-3 sm:p-8 m-2 rounded-md shadow-xl max-w-lg w-full">
+        <div className="bg-white p-3 sm:p-8 m-2 rounded-md shadow-xl max-w-lg w-full relative">
           <h1 className="text-3xl font-bold mb-2 text-center text-ishprimary">
             Welcome Back!
           </h1>
@@ -77,8 +87,16 @@ function LoginPage() {
             Enter Your Details To Login
           </h2>
 
+          {loading && (
+            <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 rounded-md">
+              <FaSpinner className="animate-spin text-3xl text-ishprimary" />
+            </div>
+          )}
+
           <form
-            className="font-semibold text-ishprimary"
+            className={`font-semibold text-ishprimary ${
+              loading ? "opacity-50" : ""
+            }`}
             onSubmit={handleSubmit}
           >
             {error && (
@@ -144,8 +162,9 @@ function LoginPage() {
             <button
               type="submit"
               className="bg-ishprimary w-full text-white py-3 px-4 rounded-md text-lg font-bold hover:bg-ishprimary-600"
+              disabled={loading} // Disable button while loading
             >
-              Sign In
+              "Sign In"
             </button>
           </form>
         </div>

@@ -52,7 +52,8 @@ const CalendarModal = ({
   handleDateChange,
 }) => {
   const today = new Date();
-  const endDate = addDays(today, 125);
+  const endDate = addDays(today, 119);
+  const minSelectableDate = addDays(today, -1); // One day before today
 
   // Generate months in the range from today to endDate
   const months = [];
@@ -137,7 +138,8 @@ const CalendarModal = ({
                 <div className="grid grid-cols-7 gap-2 text-center">
                   {days.map((day) => {
                     const isWithinRange =
-                      !isBefore(day, today) && !isAfter(day, endDate);
+                      !isBefore(day, minSelectableDate) &&
+                      !isAfter(day, endDate);
 
                     // Check if the day is a holiday
                     const holiday = holidayDates.find(
