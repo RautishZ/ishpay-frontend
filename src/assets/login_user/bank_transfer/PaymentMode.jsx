@@ -1,13 +1,11 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css"; // Optional: for blur effect on loading
 
-import credit_card from "../../../../public/credit_card.png";
-import net_banking from "../../../../public/net_banking.png";
-import wallet_payment from "../../../../public/wallet_payment.png";
-import pay_later from "../../../../public/pay_later.png";
-import EMI from "../../../../public/EMI.png";
+import credit_card from "../../static/images/credit_card.png";
+import net_banking from "../../static/images/net_banking.png";
+import wallet_payment from "../../static/images/wallet_payment.png";
+import pay_later from "../../static/images/pay_later.png";
+import EMI from "../../static/images/EMI.png";
 
 const PaymentMode = ({
   selectedMethod,
@@ -66,7 +64,7 @@ const PaymentMode = ({
                 onClick={() => handleMethodChange(method)}
               >
                 <div className="w-16 h-16">
-                  <LazyLoadImage
+                  <img
                     src={
                       method === "Card"
                         ? credit_card
@@ -79,9 +77,8 @@ const PaymentMode = ({
                         : EMI
                     }
                     alt={method}
-                    effect="blur" // Optional: add a blur effect on loading
                     className="w-full h-full object-contain"
-                    loading="lazy" // Native lazy loading
+                    loading="eager" // Eager loading
                   />
                 </div>
                 <h2 className="text-center mt-2 font-semibold">{method}</h2>

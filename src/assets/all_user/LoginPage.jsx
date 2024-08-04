@@ -11,7 +11,7 @@ import API from "../../services/API";
 import Footer from "./Footer";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../features/userDetailsSlice";
-import BlockedAccount from "./BlockedAccount"; // Import the BlockedAccount component
+import BlockedAccount from "../login_user/BlockedAccount"; // Import the BlockedAccount component
 
 function LoginPage() {
   const dispatch = useDispatch();

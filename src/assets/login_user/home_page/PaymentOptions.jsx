@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import bank_transfer from "../../../../public/bank_transfer.png";
-import education_payment from "../../../../public/education_payment.png";
-import utility_payment from "../../../../public/utility_payment.png";
-import rent_payment from "../../../../public/rent_payment.png";
+import bank_transfer from "../../static/images/bank_transfer.png";
+import education_payment from "../../static/images/education_payment.png";
+import utility_payment from "../../static/images/utility_payment.png";
+import rent_payment from "../../static/images/rent_payment.png";
 
 const paymentOptions = [
   {
@@ -47,8 +47,12 @@ function PaymentOptions() {
             className="flex flex-col items-center cursor-pointer w-full h-24"
           >
             <div className="transition-transform transform hover:scale-110 flex flex-col items-center justify-center w-full h-full">
-              <img src={src} alt={alt} className="w-12 h-12 object-contain" />{" "}
-              {/* Adjust size if necessary */}
+              <img
+                src={src}
+                alt={alt}
+                className="w-12 h-12 object-contain"
+                loading="eager" // Eager loading
+              />
               <h1 className="font-semibold mt-2 text-center text-sm">
                 {label}
               </h1>

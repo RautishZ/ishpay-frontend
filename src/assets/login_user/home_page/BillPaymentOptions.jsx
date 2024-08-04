@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css"; // Optional: for blur effect on loading
 
-import mobile_recharge from "../../../../public/mobile_recharge.png";
-import electricity_bill from "../../../../public/electricity_bill.png";
-import water_bill from "../../../../public/water_bill.png";
-import gas_bill from "../../../../public/gas_bill.png";
-import fastag from "../../../../public/fastag.png";
-import insurance_payment from "../../../../public/insurance_payment.png";
-import credit_card_bill from "../../../../public/credit_card_bill.png";
-import loan_repayment from "../../../../public/loan_repayment.png";
+import mobile_recharge from "../../static/images/mobile_recharge.png";
+import electricity_bill from "../../static/images/electricity_bill.png";
+import water_bill from "../../static/images/water_bill.png";
+import gas_bill from "../../static/images/gas_bill.png";
+import fastag from "../../static/images/fastag.png";
+import insurance_payment from "../../static/images/insurance_payment.png";
+import credit_card_bill from "../../static/images/credit_card_bill.png";
+import loan_repayment from "../../static/images/loan_repayment.png";
 
 const paymentOptions = [
   {
@@ -78,12 +76,11 @@ function BillPaymentOptions() {
             className="flex flex-col items-center cursor-pointer w-full h-24"
           >
             <div className="transition-transform transform hover:scale-110 flex flex-col items-center justify-center w-full h-full">
-              <LazyLoadImage
+              <img
                 src={src}
                 alt={alt}
-                effect="blur" // Optional: add a blur effect on loading
                 className="w-12 h-12 object-contain"
-                loading="lazy" // Native lazy loading
+                loading="eager" // Eager loading
               />
               <h1 className="font-semibold mt-2 text-center text-sm">
                 {label}

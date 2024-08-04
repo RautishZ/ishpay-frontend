@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import sentMailGif from "../../../public/sent_mail.png";
-import gmailIcon from "../../../public/gmail_icon.png";
-import outlookIcon from "../../../public/outlook_icon.png";
-import Footer from "./Footer";
+import sent_mail from "../static/images/sent_mail.png";
+import gmailIcon from "../static/images/gmail_icon.png";
+import outlookIcon from "../static/images/outlook_icon.png";
+import Footer from "../all_user/Footer";
 import { useSelector } from "react-redux";
 
 const EmailVerification = () => {
@@ -68,9 +68,10 @@ const EmailVerification = () => {
           </h1>
           <div className="flex justify-center items-center mb-6">
             <img
-              src={sentMailGif}
+              src={sent_mail}
               alt="Sent Mail Animation"
               className="w-32 h-32"
+              loading="eager"
             />
           </div>
 
@@ -89,7 +90,12 @@ const EmailVerification = () => {
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-md shadow-md border-2 border-red-500 flex items-center font-semibold text-red-500 hover:bg-red-100 transition duration-200"
             >
-              <img src={gmailIcon} alt="Gmail Icon" className="mr-2 w-6 h-6" />
+              <img
+                src={gmailIcon}
+                alt="Gmail Icon"
+                className="mr-2 w-6 h-6"
+                loading="eager"
+              />
               Open Gmail
             </a>
             <h2 className="font-semibold text-gray-500">OR</h2>
@@ -103,6 +109,7 @@ const EmailVerification = () => {
                 src={outlookIcon}
                 alt="Outlook Icon"
                 className="mr-2 w-6 h-6"
+                loading="eager"
               />
               Open Outlook
             </a>

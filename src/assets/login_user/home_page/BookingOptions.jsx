@@ -1,11 +1,9 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css"; // Optional: for blur effect on loading
 
-import train_ticket from "../../../../public/train_ticket.png";
-import bus from "../../../../public/bus.png";
-import airplane_ticket from "../../../../public/airplane_ticket.png";
-import movies from "../../../../public/movies.png";
+import train_ticket from "../../static/images/train_ticket.png";
+import bus from "../../static/images/bus.png";
+import airplane_ticket from "../../static/images/airplane_ticket.png";
+import movies from "../../static/images/movies.png";
 
 const bookingOptions = [
   { src: train_ticket, alt: "Train Ticket", label: "Trains" },
@@ -28,12 +26,11 @@ function BookingOperationButton() {
             className="flex flex-col items-center cursor-pointer w-full h-24"
           >
             <div className="transition-transform transform hover:scale-110 flex flex-col items-center justify-center w-full h-full">
-              <LazyLoadImage
+              <img
                 src={src}
                 alt={alt}
-                effect="blur" // Optional: add a blur effect on loading
                 className="w-12 h-12 object-contain"
-                loading="lazy" // Native lazy loading
+                loading="eager" // Eager loading
               />
               <h1 className="font-semibold mt-2 text-center text-sm">
                 {label}
