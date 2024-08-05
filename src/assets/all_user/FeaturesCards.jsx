@@ -4,10 +4,10 @@ function FeaturesCards() {
   return (
     <div>
       {/* Features Cards */}
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Feature Card 1 */}
         <div className="bg-white rounded-lg p-3 shadow-md">
-          <h3 className="text-lg sm:text-xl font-bold mb-2">
+          <h3 className="text-lg md:text-xl font-bold mb-2">
             Instant Card-to-Bank Transfers
           </h3>
           <p className="text-gray-700">
@@ -18,7 +18,7 @@ function FeaturesCards() {
         </div>
         {/* Feature Card 2 */}
         <div className="bg-white rounded-lg p-3 shadow-md">
-          <h3 className="text-lg sm:text-xl font-bold mb-2">
+          <h3 className="text-lg md:text-xl font-bold mb-2">
             Effortless Wallet-to-Bank Transfers
           </h3>
           <p className="text-gray-700">
@@ -29,7 +29,7 @@ function FeaturesCards() {
         </div>
         {/* Feature Card 3 */}
         <div className="bg-white rounded-lg p-3 shadow-md">
-          <h3 className="text-lg sm:text-xl font-bold mb-2">
+          <h3 className="text-lg md:text-xl font-bold mb-2">
             Pay All Your Bills Easily
           </h3>
           <p className="text-gray-700">
@@ -40,7 +40,7 @@ function FeaturesCards() {
         </div>
         {/* Feature Card 4 */}
         <div className="bg-white rounded-lg p-3 shadow-md">
-          <h3 className="text-lg sm:text-xl font-bold mb-2">
+          <h3 className="text-lg md:text-xl font-bold mb-2">
             Always 100% Secure Transactions
           </h3>
           <p className="text-gray-700">

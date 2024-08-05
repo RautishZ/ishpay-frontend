@@ -25,6 +25,7 @@ import SelectDetails from "./assets/login_user/train_services/SelectDetails";
 import RefundPolicyPage from "./assets/all_user/RefundPolicyPage";
 
 import EmailVerification from "./assets/login_user/EmailVerification";
+import VerifyAccountPage from "./assets/login_user/VerifyAccountPage";
 
 // Layout for pages that include the NavBar and WelcomeMessage
 const MainLayout = () => (
@@ -170,6 +171,10 @@ const router = createBrowserRouter([
     ),
   },
 
+  {
+    path: "verify",
+    element: <VerifyAccountPage></VerifyAccountPage>,
+  },
   {
     path: "*",
     element: <h1>404 Not Found</h1>,

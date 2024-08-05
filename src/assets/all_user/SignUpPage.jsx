@@ -119,16 +119,16 @@ function SignUpPage() {
   return (
     <div>
       {/* NavBar */}
-      <div className="px-4 py-8 sm:px-6 sm:py-8 text-gray-800">
-        <div className="sm:max-w-5xl mx-auto">
+      <div className="px-4 py-8 md:px-6 md:py-8 text-gray-800">
+        <div className="md:max-w-5xl mx-auto">
           <div className="flex justify-between items-center mb-8 cursor-pointer">
             <Link to="/">
-              <h1 className="text-4xl sm:text-5xl font-bold text-ishprimary">
+              <h1 className="text-4xl md:text-5xl font-bold text-ishprimary">
                 ISHPAY
               </h1>
             </Link>
             <Link to="/login">
-              <button className="bg-ishprimary text-white px-4 py-2 rounded-lg shadow-md hover:bg-ishprimary-600">
+              <button className="bg-ishprimary text-white px-4 py-2 rounded-lg shadow-md hover:bg-ishprimary-600 text-2xl">
                 Login
               </button>
             </Link>
@@ -137,7 +137,7 @@ function SignUpPage() {
       </div>
 
       <div className="flex justify-center items-center">
-        <div className="bg-white p-3 sm:p-8 m-2 rounded-md shadow-xl max-w-lg w-full relative">
+        <div className="bg-white p-3 md:p-8 m-2 rounded-md shadow-xl max-w-lg w-full relative">
           <h1 className="text-3xl font-bold mb-2 text-center text-ishprimary">
             Create your Account
           </h1>

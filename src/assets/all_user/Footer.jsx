@@ -22,7 +22,7 @@ function Footer() {
 
   return (
     <footer className="relative bottom-0 mt-5 text-center text-md bg-ishprimary min-h-[100px] flex flex-col justify-center items-center gap-4 text-white p-4">
-      <ul className="flex flex-col md:flex-row justify-center space-y-2 sm:space-y-0 md:space-x-10">
+      <ul className="flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-10">
         <li>
           <Link to="/about-us" className={linkClassName("/about-us")}>
             About Us
@@ -57,7 +57,7 @@ function Footer() {
 
         {/* Add more footer links as needed */}
       </ul>
-      <p className="text-xs sm:text-sm mt-2">
+      <p className="text-xs md:text-sm mt-2">
         &copy; 2024 IshPay. All rights reserved.
       </p>
     </footer>

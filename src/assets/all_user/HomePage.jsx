@@ -35,8 +35,8 @@ function HomePage() {
 
   return (
     <div className="">
-      <div className="px-3 py-8 sm:px-6 sm:py-8 text-gray-800">
-        <div className="sm:max-w-5xl mx-auto">
+      <div className="px-3 py-8 md:px-6 md:py-8 text-gray-800">
+        <div className="md:max-w-5xl mx-auto">
           <Outlet></Outlet>
           {showGoToTop && (
             <div

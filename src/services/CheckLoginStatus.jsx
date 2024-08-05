@@ -25,17 +25,21 @@ const CheckLoginStatus = ({ children }) => {
         }
 
         if (userDetails.isAuthenticated) {
-          if (
-            !userDetails.userDetails.emailVerified &&
-            window.location.pathname !== "/email-verification"
-          ) {
+          if (!userDetails.userDetails.emailVerified) {
             navigate("/email-verification");
-          } else if (["/login", "/signup"].includes(window.location.pathname)) {
+          } else if (
+            !["/email-verification"].includes(window.location.pathname)
+          ) {
+            return children;
+          } else {
             navigate("/home");
           }
+        } else {
+          navigate("/login");
         }
       } catch (error) {
         console.error("Authentication error:", error);
+        localStorage.removeItem("jwtToken");
         navigate("/login");
       } finally {
         setIsLoading(false);

@@ -109,18 +109,18 @@ function FAQ() {
     <div>
       {/* Frequently Asked Questions */}
       <div className="mt-16">
-        <h2 className="text-xl sm:text-3xl font-bold text-center mb-8">
+        <h2 className="text-xl md:text-3xl font-bold text-center mb-8">
           Frequently Asked Questions
         </h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg p-3 sm:p-6 shadow-md cursor-pointer"
+              className="bg-white rounded-lg p-3 md:p-6 shadow-md cursor-pointer"
               onClick={() => toggleFaq(index)}
             >
               <div className="flex justify-between items-center ">
-                <h3 className="text-md sm:text-xl font-bold">{faq.question}</h3>
+                <h3 className="text-md md:text-xl font-bold">{faq.question}</h3>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-6 w-6 ${
