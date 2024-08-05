@@ -13,7 +13,7 @@ const EmailVerification = () => {
   const userDetails = useSelector((state) => state.userDetails.userDetails);
   const [canResend, setCanResend] = useState(true);
   const [timeLeft, setTimeLeft] = useState(0);
-  const [sending, setSending] = useState(false);
+  const [sending, setSending] = useState(false); // Track sending state
 
   useEffect(() => {
     let timer;
@@ -39,13 +39,13 @@ const EmailVerification = () => {
       setCanResend(false);
       const response = await API.post("/resend-email");
       toast.success("Email resent successfully!");
-      setTimeLeft(60);
+      setTimeLeft(60); // Set timer to 1 minutes
     } catch (error) {
       console.error("Error resending email:", error);
       toast.error("Failed to resend verification email. Please try again.");
-      setCanResend(true);
+      setCanResend(true); // Re-enable the resend button on error
     } finally {
-      setSending(false);
+      setSending(false); // Reset sending state
     }
   };
 
@@ -54,15 +54,6 @@ const EmailVerification = () => {
     localStorage.removeItem("jwtToken");
     window.location.href = "/";
   };
-
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  const gmailLink = isMobile
-    ? "googlegmail://"
-    : "https://mail.google.com/mail/u/0/#search/from:ishpaymanage@gmail.com";
-  const outlookLink = isMobile
-    ? "ms-outlook://"
-    : "https://outlook.live.com/mail/";
 
   return (
     <div className="min-h-screen flex flex-col relative">
@@ -107,7 +98,7 @@ const EmailVerification = () => {
           </p>
           <div className="mt-6 flex flex-col gap-3 justify-evenly items-center sm:flex-row">
             <a
-              href={gmailLink}
+              href="https://mail.google.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-md shadow-md border-2 border-red-500 flex items-center font-semibold text-red-500 hover:bg-red-100 transition duration-200"
@@ -122,7 +113,7 @@ const EmailVerification = () => {
             </a>
             <h2 className="font-semibold text-gray-500">OR</h2>
             <a
-              href={outlookLink}
+              href="https://outlook.live.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-md shadow-md border-2 border-cyan-700 flex items-center font-semibold text-cyan-600 hover:bg-cyan-100 transition duration-200"
