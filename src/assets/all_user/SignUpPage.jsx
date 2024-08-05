@@ -103,7 +103,7 @@ function SignUpPage() {
           localStorage.setItem("jwtToken", response.data.token);
         }
 
-        navigate("/home");
+        navigate("/verify-email");
       } catch (error) {
         if (error.response?.data === "User already exists") {
           setErrors({ email: "User already exists" });

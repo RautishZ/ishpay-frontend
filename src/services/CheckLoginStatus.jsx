@@ -35,7 +35,7 @@ const CheckLoginStatus = ({ children }) => {
             navigate("/home");
           }
         } else {
-          navigate("/login");
+          return children;
         }
       } catch (error) {
         console.error("Authentication error:", error);
