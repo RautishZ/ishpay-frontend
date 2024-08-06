@@ -76,8 +76,8 @@ const BankTransfer = () => {
   };
 
   return (
-    <div className="flex flex-col items-center pb-10 px-3 sm:px-6 lg:px-8">
-      <div className="flex flex-col mt-4 md:mt-0 w-full max-w-4xl border-2 border-secondary-200">
+    <div className="">
+      <div className="border-2 border-secondary-200">
         <div className="py-2 text-2xl font-semibold text-center bg-secondary-200">
           <h1>Transfer Funds</h1>
         </div>

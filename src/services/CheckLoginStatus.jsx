@@ -6,7 +6,9 @@ import API from "./API";
 import LoadingScreen from "./LoadingScreen";
 
 const CheckLoginStatus = ({ children }) => {
-  const userDetails = useSelector((state) => state.userDetails);
+  const { isAuthenticated, userDetails: user } = useSelector(
+    (state) => state.userDetails
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -15,27 +17,25 @@ const CheckLoginStatus = ({ children }) => {
     const checkAuthStatus = async () => {
       try {
         const token = localStorage.getItem("jwtToken");
-        if (token && !userDetails.isAuthenticated) {
-          const response = await API.post("/login", {});
-          console.log(response.data);
+        if (token && !isAuthenticated) {
+          const response = await API.post("/verify-token", {});
           if (response.data.token) {
             localStorage.setItem("jwtToken", response.data.token);
+            dispatch(setUserDetails(response.data));
           }
-          dispatch(setUserDetails(response.data));
         }
 
-        if (userDetails.isAuthenticated) {
-          if (!userDetails.userDetails.emailVerified) {
+        if (isAuthenticated) {
+          if (!user.emailVerified) {
             navigate("/email-verification");
           } else if (
-            !["/email-verification"].includes(window.location.pathname)
+            window.location.pathname === "/login" ||
+            window.location.pathname === "/signup"
           ) {
-            return children;
-          } else {
             navigate("/home");
           }
-        } else {
-          return children;
+        } else if (window.location.pathname !== "/signup") {
+          navigate("/login");
         }
       } catch (error) {
         console.error("Authentication error:", error);
@@ -47,24 +47,18 @@ const CheckLoginStatus = ({ children }) => {
     };
 
     checkAuthStatus();
-  }, [userDetails, dispatch, navigate]);
+  }, [isAuthenticated, user.emailVerified, dispatch, navigate]);
 
   if (isLoading) {
     return <LoadingScreen />;
   }
 
   if (
-    !userDetails.isAuthenticated &&
-    window.location.pathname.startsWith("/home")
+    !isAuthenticated &&
+    window.location.pathname !== "/login" &&
+    window.location.pathname !== "/signup"
   ) {
     return <Navigate to="/login" />;
-  }
-
-  if (
-    userDetails.isAuthenticated &&
-    ["/login", "/signup"].includes(window.location.pathname)
-  ) {
-    return <Navigate to="/home" />;
   }
 
   return children;

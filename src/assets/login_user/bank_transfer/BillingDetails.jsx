@@ -1,7 +1,7 @@
 import React from "react";
 
 const BillingDetails = ({ amount, convenienceCharges, gst, grandTotal }) => (
-  <div className="flex flex-col w-full max-w-4xl mt-6">
+  <div className="flex flex-col w-full mt-6">
     <div className="py-2 text-2xl font-semibold text-center bg-secondary-200">
       <h1>Billing Details</h1>
     </div>

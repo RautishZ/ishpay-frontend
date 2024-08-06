@@ -14,18 +14,20 @@ import FeaturesCards from "./assets/all_user/FeaturesCards";
 
 import BankTransfer from "./assets/login_user/bank_transfer/BankTransfer";
 import TransactionsPage from "./assets/login_user/TransactionsPage";
-import LoginHomePage from "./assets/login_user/home_page/LoginHomePage";
+import LoginHomePage from "./assets/login_user/home_page/UserHomePage";
 import ProfileNav from "./assets/login_user/ProfileNav";
 import CheckLoginStatus from "./services/CheckLoginStatus";
 import IdentityVerification from "./assets/login_user/IdentityVerification";
 
 // Importing payment components
-import MobileRecharge from "./assets/login_user/payments/MobileRecharge";
+import MobileRecharge from "./assets/login_user/bill_payments/mobile_recharge/MobileRecharge";
 import SelectDetails from "./assets/login_user/train_services/SelectDetails";
 import RefundPolicyPage from "./assets/all_user/RefundPolicyPage";
 
 import EmailVerification from "./assets/login_user/EmailVerification";
 import VerifyAccountPage from "./assets/login_user/VerifyAccountPage";
+import Home from "./assets/login_user/home_page/Home";
+import UserHomePage from "./assets/login_user/home_page/UserHomePage";
 
 // Layout for pages that include the NavBar and WelcomeMessage
 const MainLayout = () => (
@@ -33,14 +35,6 @@ const MainLayout = () => (
     <NavBar />
     <WelcomeMessage />
     <HomePage />
-  </div>
-);
-
-// Layout for authenticated pages that include the ProfileNav
-const DashboardLayout = () => (
-  <div>
-    <ProfileNav />
-    <Outlet />
   </div>
 );
 
@@ -80,6 +74,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "login",
     element: (
@@ -109,13 +104,13 @@ const router = createBrowserRouter([
     path: "home",
     element: (
       <CheckLoginStatus>
-        <DashboardLayout />
+        <UserHomePage />
       </CheckLoginStatus>
     ),
     children: [
       {
         path: "",
-        element: <LoginHomePage />,
+        element: <Home />,
       },
     ],
   },
@@ -123,13 +118,18 @@ const router = createBrowserRouter([
     path: "payment",
     element: (
       <CheckLoginStatus>
-        <DashboardLayout />
+        <UserHomePage />
       </CheckLoginStatus>
     ),
     children: [
       {
         path: "bank-transfer",
-        element: <BankTransfer />,
+
+        element: (
+          <CheckLoginStatus>
+            <BankTransfer />
+          </CheckLoginStatus>
+        ),
       },
     ],
   },
@@ -137,7 +137,7 @@ const router = createBrowserRouter([
     path: "bill-payments",
     element: (
       <CheckLoginStatus>
-        <DashboardLayout />
+        <UserHomePage />
       </CheckLoginStatus>
     ),
     children: [
@@ -147,11 +147,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "transactions",
     element: (
       <CheckLoginStatus>
-        <DashboardLayout />
+        <UserHomePage />
         <TransactionsPage />
       </CheckLoginStatus>
     ),
@@ -165,7 +166,7 @@ const router = createBrowserRouter([
     path: "train-booking",
     element: (
       <>
-        <DashboardLayout />
+        <UserHomePage />
         <SelectDetails></SelectDetails>,
       </>
     ),
