@@ -80,7 +80,7 @@ function TrainTicketBooking() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 mt-8 font-semibold">
+    <div className="font-semibold">
       <h1 className="text-3xl font-bold p-4 text-center bg-secondary-100 rounded-t-lg">
         Search Train
       </h1>
@@ -135,7 +135,7 @@ function TrainTicketBooking() {
           </div>
           <button
             type="submit"
-            className="w-full bg-ishprimary-500 text-white p-2 rounded-md hover:bg-ishprimary-600"
+            className="w-full bg-ishprimary-500 text-white p-3 text-2xl rounded-md hover:bg-ishprimary-600"
           >
             Search
           </button>

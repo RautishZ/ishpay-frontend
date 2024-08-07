@@ -5,7 +5,7 @@ function SelectDetails() {
   return (
     <div>
       <TrainTicketBooking></TrainTicketBooking>
-      <TrainList></TrainList>
+      {/* <TrainList></TrainList> */}
     </div>
   );
 }

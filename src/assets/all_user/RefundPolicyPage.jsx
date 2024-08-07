@@ -3,7 +3,7 @@ import { FaEnvelope, FaPhone } from "react-icons/fa";
 
 const RefundPolicyPage = () => {
   return (
-    <div className="max-w-5xl mx-auto  text-justify">
+    <div className="max-w-5xl mx-auto text-justify">
       <h1 className="text-3xl font-bold p-4 text-center bg-secondary-100 rounded-t-lg">
         Refund Policy
       </h1>
@@ -52,33 +52,74 @@ const RefundPolicyPage = () => {
           </h2>
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-medium mb-2">Bill Payments</h3>
+              <h3 className="text-xl font-medium mb-2">Bank Payment</h3>
               <p className="text-gray-700">
-                Refunds for bill payments will be considered only if there was
-                an error in processing or if the payment was made more than
-                once. Refunds will not be granted if the bill was paid
+                Refunds for bank payments will be considered if there was an
+                error in processing or if the payment was made more than once.
+                Refunds will not be granted if the transaction was successful
+                and the service was delivered.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-medium mb-2">Utility Payment</h3>
+              <p className="text-gray-700">
+                Refunds for utility payments, including electricity, water, and
+                gas bills, will be granted only if there was an error in
+                processing or if the payment was made more than once. Refunds
+                will not be granted if the bill was paid successfully and the
+                service was delivered.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-medium mb-2">Rent Payment</h3>
+              <p className="text-gray-700">
+                Refunds for rent payments will be processed if there was an
+                error in the transaction or if the payment was made more than
+                once. Refunds will not be granted if the payment was completed
                 successfully and the service was delivered.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium mb-2">
-                Credit Card to Bank Transfer
-              </h3>
+              <h3 className="text-xl font-medium mb-2">Education Payment</h3>
               <p className="text-gray-700">
-                Refunds for credit card to bank transfers will be processed if
-                there was a failure in the transfer or an error in the
-                transaction. The refund will be issued to the original payment
-                method.
+                Refunds for education payments will be considered if there was
+                an error in processing or if the payment was made more than
+                once. Refunds will not be granted if the payment was completed
+                successfully and the service was delivered.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium mb-2">
-                Wallet to Bank Account Transfer
-              </h3>
+              <h3 className="text-xl font-medium mb-2">Mobile Recharge</h3>
               <p className="text-gray-700">
-                Refunds for wallet to bank account transfers will be granted
-                only if the transfer failed or was processed incorrectly.
-                Refunds will be issued to the original payment method.
+                Refunds for mobile recharges will be considered only if there
+                was an error in processing or if the recharge was made more than
+                once. Refunds will not be granted if the recharge was completed
+                successfully and the service was delivered.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-medium mb-2">Insurance Payment</h3>
+              <p className="text-gray-700">
+                Refunds for insurance payments will be processed if there was a
+                failure in the transaction or an error in processing. The refund
+                will be issued to the original payment method.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-medium mb-2">Credit Card Bill</h3>
+              <p className="text-gray-700">
+                Refunds for credit card bill payments will be considered if
+                there was an error in processing or if the payment was made more
+                than once. Refunds will not be granted if the payment was
+                completed successfully and the service was delivered.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-medium mb-2">Loan Repayment</h3>
+              <p className="text-gray-700">
+                Refunds for loan repayments will be processed if there was a
+                failure in the transaction or an error in processing. The refund
+                will be issued to the original payment method.
               </p>
             </div>
             <div>
@@ -86,10 +127,10 @@ const RefundPolicyPage = () => {
                 Booking Services (Coming Soon)
               </h3>
               <p className="text-gray-700">
-                Refund policies for booking services such as train, airplane,
-                bus, and movie tickets will be specified once these services are
-                available. Please check the specific terms for each booking
-                service.
+                Refund policies for booking services such as train tickets,
+                airplane tickets, bus tickets, and movie tickets will be
+                specified once these services are available. Please check the
+                specific terms for each booking service.
               </p>
             </div>
           </div>

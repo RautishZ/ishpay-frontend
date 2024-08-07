@@ -29,6 +29,39 @@ const plans = [
   // Add other plan categories and amounts here
 ];
 
+const customStyles = {
+  control: (base, state) => ({
+    ...base,
+    borderColor: state.isFocused ? "#AD1E23" : "#E18082",
+    "&:hover": {
+      borderColor: "#AD1E23",
+    },
+    boxShadow: state.isFocused ? "0 0 0 1px #AD1E23" : "none",
+    padding: "0.6rem", // p-2 in Tailwind CSS
+  }),
+  option: (base, state) => ({
+    ...base,
+    backgroundColor: state.isFocused
+      ? "#E18082"
+      : state.isSelected
+      ? "#AD1E23"
+      : "white",
+    color: state.isFocused || state.isSelected ? "white" : "black",
+    "&:hover": {
+      backgroundColor: "#E18082",
+      color: "white",
+    },
+  }),
+  valueContainer: (base) => ({
+    ...base,
+    padding: "0 8px",
+  }),
+  singleValue: (base) => ({
+    ...base,
+    color: "#333",
+  }),
+};
+
 const MobileRecharge = () => {
   const [show, setShow] = useState(false);
   const [planModalShow, setPlanModalShow] = useState(false);
@@ -120,6 +153,7 @@ const MobileRecharge = () => {
               }
               onChange={(option) => setSelectedState(option.value)}
               placeholder="Select State"
+              styles={customStyles}
             />
           </div>
 
@@ -139,6 +173,7 @@ const MobileRecharge = () => {
               }
               onChange={(option) => setSelectedCarrier(option.value)}
               placeholder="Select Carrier"
+              styles={customStyles}
             />
           </div>
 
@@ -148,7 +183,7 @@ const MobileRecharge = () => {
             </label>
             <button
               onClick={handlePlanModalShow}
-              className="w-full p-2 border-2 border-gray-300 rounded bg-white text-gray-700 flex items-center justify-between"
+              className="w-full p-3 border-1 border-ishprimary-300 hover:border-ishprimary rounded bg-white text-gray-700 flex items-center justify-between"
             >
               {selectedPlan ? `₹${selectedPlan}` : "Select Plan"}
               <BiChevronRight className="text-gray-500" />
@@ -157,7 +192,7 @@ const MobileRecharge = () => {
 
           {/* Display selected plan details */}
           {selectedPlan && planDetails[selectedPlan] && (
-            <div className="my-4 p-3 bg-white border-2 border-gray-300 rounded-lg shadow-md">
+            <div className="my-4 p-3 bg-white  rounded-lg shadow-md">
               <div className="flex justify-between">
                 <h5 className="text-lg font-semibold mb-2">
                   {planDetails[selectedPlan].name}
@@ -211,50 +246,14 @@ const MobileRecharge = () => {
                 : ""
             }`}
           >
-            {isProcessing ? "Processing..." : "Recharge Now"}
+            {isProcessing ? (
+              <span className="flex items-center justify-center">
+                Processing...
+              </span>
+            ) : (
+              <span className="flex items-center justify-center">Recharge</span>
+            )}
           </button>
-
-          {/* Plan Modal */}
-          <Modal show={planModalShow} onHide={handlePlanModalClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Select Plan</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {plans.map((planCategory, index) => (
-                <div key={index} className="mb-4">
-                  <h5 className="text-lg font-semibold mb-2">
-                    {planCategory.category}
-                  </h5>
-                  <ul className="list-disc pl-5">
-                    {planCategory.amounts.map((amount, i) => (
-                      <li key={i}>
-                        <button
-                          onClick={() => {
-                            setSelectedPlan(amount);
-                            handlePlanModalClose();
-                          }}
-                          className="w-full text-left p-2 border-b border-gray-300 hover:bg-gray-100"
-                        >
-                          ₹{amount}
-                          <p className="text-gray-500 text-sm">
-                            Validity: {planDetails[amount]?.packValidity}
-                          </p>
-                          <p className="text-gray-500 text-sm">
-                            Data: {planDetails[amount]?.dataAtHighSpeed}
-                          </p>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handlePlanModalClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
         </div>
       )}
 
@@ -264,18 +263,51 @@ const MobileRecharge = () => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            Are you sure you want to recharge {mobileNumber} with ₹
-            {selectedPlan}?
+            Recharging {mobileNumber} with ₹{selectedAmount}
           </p>
+          <p>State: {selectedState}</p>
+          <p>Carrier: {selectedCarrier}</p>
+          <p>Plan: ₹{selectedPlan}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Confirm Recharge
+            Confirm
           </Button>
         </Modal.Footer>
+      </Modal>
+
+      <Modal show={planModalShow} onHide={handlePlanModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Select a Plan</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {plans.map((planCategory, index) => (
+            <div key={index}>
+              <h5 className="font-semibold mb-2">{planCategory.category}</h5>
+              <div className="mb-4">
+                {planCategory.amounts.map((amount, idx) => (
+                  <button
+                    key={idx}
+                    className={`w-full p-2 border-2 border-gray-300 rounded mb-2 ${
+                      selectedPlan === amount
+                        ? "bg-ishprimary-500 text-white"
+                        : "bg-white text-gray-700"
+                    }`}
+                    onClick={() => {
+                      setSelectedPlan(amount);
+                      handlePlanModalClose();
+                    }}
+                  >
+                    ₹{amount}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </Modal.Body>
       </Modal>
     </div>
   );

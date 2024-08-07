@@ -12,22 +12,21 @@ import LoginPage from "./assets/all_user/LoginPage";
 import SignUpPage from "./assets/all_user/SignUpPage";
 import FeaturesCards from "./assets/all_user/FeaturesCards";
 
-import BankTransfer from "./assets/login_user/bank_transfer/BankTransfer";
+import BankTransfer from "./assets/login_user/payments/bank_transfer/BankTransfer";
 import TransactionsPage from "./assets/login_user/TransactionsPage";
-import LoginHomePage from "./assets/login_user/home_page/UserHomePage";
-import ProfileNav from "./assets/login_user/ProfileNav";
 import CheckLoginStatus from "./services/CheckLoginStatus";
 import IdentityVerification from "./assets/login_user/IdentityVerification";
 
 // Importing payment components
 import MobileRecharge from "./assets/login_user/bill_payments/mobile_recharge/MobileRecharge";
-import SelectDetails from "./assets/login_user/train_services/SelectDetails";
+import SelectDetails from "./assets/login_user/tickets/train_services/SelectDetails";
 import RefundPolicyPage from "./assets/all_user/RefundPolicyPage";
 
 import EmailVerification from "./assets/login_user/EmailVerification";
 import VerifyAccountPage from "./assets/login_user/VerifyAccountPage";
 import Home from "./assets/login_user/home_page/Home";
 import UserHomePage from "./assets/login_user/home_page/UserHomePage";
+import ElectricityBillPayment from "./assets/login_user/bill_payments/electricity_bill/ElectricityBillPayment";
 
 // Layout for pages that include the NavBar and WelcomeMessage
 const MainLayout = () => (
@@ -145,31 +144,52 @@ const router = createBrowserRouter([
         path: "mobile-recharge",
         element: <MobileRecharge />,
       },
+      {
+        path: "electricity-bill",
+        element: <ElectricityBillPayment></ElectricityBillPayment>,
+      },
     ],
   },
-
+  {
+    path: "tickets",
+    element: (
+      <CheckLoginStatus>
+        <UserHomePage />
+      </CheckLoginStatus>
+    ),
+    children: [
+      {
+        path: "trains",
+        element: (
+          <>
+            <SelectDetails></SelectDetails>
+          </>
+        ),
+      },
+    ],
+  },
   {
     path: "transactions",
     element: (
       <CheckLoginStatus>
         <UserHomePage />
-        <TransactionsPage />
       </CheckLoginStatus>
     ),
-  },
-  {
-    path: "identity-verification",
-    element: <IdentityVerification />,
+    children: [
+      {
+        path: "",
+        element: (
+          <>
+            <TransactionsPage></TransactionsPage>
+          </>
+        ),
+      },
+    ],
   },
 
   {
-    path: "train-booking",
-    element: (
-      <>
-        <UserHomePage />
-        <SelectDetails></SelectDetails>,
-      </>
-    ),
+    path: "identity-verification",
+    element: <IdentityVerification />,
   },
 
   {

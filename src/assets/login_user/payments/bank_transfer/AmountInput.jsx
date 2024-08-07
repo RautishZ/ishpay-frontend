@@ -9,7 +9,7 @@ const AmountInput = ({ amount, handleAmountChange }) => (
         value={amount}
         onChange={handleAmountChange}
         placeholder="Enter amount"
-        className="form-control mt-2 w-full p-3 text-2xl border border-gray-300 rounded-md"
+        className="form-control mt-2 w-full p-3 text-2xl border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ishprimary-500"
       />
     </label>
   </div>

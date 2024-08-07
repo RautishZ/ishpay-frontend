@@ -18,11 +18,11 @@ const CheckLoginStatus = ({ children }) => {
       try {
         const token = localStorage.getItem("jwtToken");
         if (token && !isAuthenticated) {
-          const response = await API.post("/verify-token", {});
+          const response = await API.post("/login", {});
           if (response.data.token) {
             localStorage.setItem("jwtToken", response.data.token);
-            dispatch(setUserDetails(response.data));
           }
+          dispatch(setUserDetails(response.data));
         }
 
         if (isAuthenticated) {

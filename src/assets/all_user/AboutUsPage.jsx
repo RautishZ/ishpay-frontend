@@ -162,11 +162,9 @@ const AboutUsPage = () => {
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
-            Operational Address
+            Office Address
           </h2>
           <p className="text-lg text-gray-700">
-            IshPay Pvt. Ltd.
-            <br />
             Ward-14, Chandi Road Harnaut,
             <br />
             Nalanda, Bihar, India 803110
@@ -174,9 +172,12 @@ const AboutUsPage = () => {
         </section>
 
         <section>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 font-semibold text-center">
             We look forward to serving you and making your financial management
-            easier and more efficient. Thank you for choosing IshPay!
+            easier and more efficient.
+          </p>
+          <p className="text-lg text-gray-700 font-semibold text-center">
+            Thank you for choosing IshPay!
           </p>
         </section>
       </div>

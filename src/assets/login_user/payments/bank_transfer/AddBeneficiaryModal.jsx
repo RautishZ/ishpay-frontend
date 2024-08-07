@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import API from "../../../services/API";
+import API from "../../../../services/API";
 import { toast } from "react-toastify";
 
 const AddBeneficiaryModal = ({ show, onHide, onAddBeneficiary }) => {
@@ -81,6 +81,16 @@ const AddBeneficiaryModal = ({ show, onHide, onAddBeneficiary }) => {
     }));
   };
 
+  const handleAccountNumberChange = (e) => {
+    const { name, value } = e.target;
+    // Remove non-numeric characters
+    const numericValue = value.replace(/[^0-9]/g, "");
+    setNewBeneficiary((prevState) => ({
+      ...prevState,
+      [name]: numericValue,
+    }));
+  };
+
   const handleAddBeneficiary = async () => {
     if (!validateInputs()) return;
 
@@ -108,14 +118,14 @@ const AddBeneficiaryModal = ({ show, onHide, onAddBeneficiary }) => {
       </Modal.Header>
       <Modal.Body>
         <form>
-          <div className="mb-4">
+          <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700">
               Beneficiary Name
             </label>
             <input
               type="text"
               name="beneficiaryName"
-              className={`mt-1 block w-full px-3 py-2 border rounded-md text-sm shadow-sm placeholder-gray-400 
+              className={`mt-1 block w-full px-4 py-3 border rounded-md text-sm shadow-sm placeholder-gray-400 
                 ${error.beneficiaryName ? "border-red-500" : "border-gray-300"} 
                 focus:outline-none focus:ring-2 focus:ring-ishprimary-500`}
               placeholder="Enter Beneficiary Name"
@@ -128,32 +138,32 @@ const AddBeneficiaryModal = ({ show, onHide, onAddBeneficiary }) => {
               </p>
             )}
           </div>
-          <div className="mb-4">
+          <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700">
               Account Number
             </label>
             <input
               type="text"
               name="accountNumber"
-              className={`mt-1 block w-full px-3 py-2 border rounded-md text-sm shadow-sm placeholder-gray-400 
+              className={`mt-1 block w-full px-4 py-3 border rounded-md text-sm shadow-sm placeholder-gray-400 
                 ${error.accountNumber ? "border-red-500" : "border-gray-300"} 
                 focus:outline-none focus:ring-2 focus:ring-ishprimary-500`}
               placeholder="Enter Account Number"
               value={newBeneficiary.accountNumber}
-              onChange={handleInputChange}
+              onChange={handleAccountNumberChange}
             />
             {error.accountNumber && (
               <p className="mt-2 text-sm text-red-500">{error.accountNumber}</p>
             )}
           </div>
-          <div className="mb-4">
+          <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700">
               IFSC Code
             </label>
             <input
               type="text"
               name="ifscCode"
-              className={`mt-1 block w-full px-3 py-2 border rounded-md text-sm shadow-sm placeholder-gray-400 
+              className={`mt-1 block w-full px-4 py-3 border rounded-md text-sm shadow-sm placeholder-gray-400 
                 ${error.ifscCode ? "border-red-500" : "border-gray-300"} 
                 focus:outline-none focus:ring-2 focus:ring-ishprimary-500`}
               placeholder="Enter IFSC Code"
@@ -164,14 +174,14 @@ const AddBeneficiaryModal = ({ show, onHide, onAddBeneficiary }) => {
               <p className="mt-2 text-sm text-red-500">{error.ifscCode}</p>
             )}
           </div>
-          <div className="mb-4">
+          <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700">
               Bank Name
             </label>
             <input
               type="text"
               name="bankName"
-              className={`mt-1 block w-full px-3 py-2 border rounded-md text-sm shadow-sm placeholder-gray-400 
+              className={`mt-1 block w-full px-4 py-3 border rounded-md text-sm shadow-sm placeholder-gray-400 
                 ${error.bankName ? "border-red-500" : "border-gray-300"} 
                 focus:outline-none focus:ring-2 focus:ring-ishprimary-500`}
               placeholder="Enter Bank Name"
@@ -187,7 +197,7 @@ const AddBeneficiaryModal = ({ show, onHide, onAddBeneficiary }) => {
       <Modal.Footer>
         <div className="flex justify-center w-full">
           <button
-            className={`bg-ishprimary-500 text-white border border-transparent rounded px-4 py-2 
+            className={`bg-ishprimary-500 text-xl text-white border border-transparent rounded p-3 
               ${
                 loading
                   ? "cursor-not-allowed opacity-50"

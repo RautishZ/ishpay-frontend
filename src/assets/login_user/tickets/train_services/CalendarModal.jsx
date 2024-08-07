@@ -90,7 +90,7 @@ const CalendarModal = ({
   }, [selectedDate, months]);
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleClose} centered size="lg">
       <Modal.Header
         closeButton
         className="text-center bg-secondary-100 shadow-lg"
@@ -99,7 +99,10 @@ const CalendarModal = ({
           Select Departure Date
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="p-4 flex flex-col overflow-y-auto h-[calc(80vh-56px)]">
+      <Modal.Body
+        className="flex flex-col overflow-y-auto "
+        style={{ height: "calc(100vh - 185px)" }}
+      >
         <div className="flex flex-col space-y-4">
           {months.map((month, index) => {
             const start = startOfMonth(month);

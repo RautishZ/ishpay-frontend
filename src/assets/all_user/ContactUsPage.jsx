@@ -77,9 +77,12 @@ const ContactUsPage = () => {
         </section>
 
         <section>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 font-semibold text-center">
             We look forward to assisting you and ensuring your experience with
-            IshPay is smooth and satisfactory. Thank you for choosing IshPay!
+            IshPay is smooth and satisfactory.
+          </p>
+          <p className="text-lg text-gray-700 font-semibold text-center">
+            Thank you for choosing IshPay!
           </p>
         </section>
       </div>

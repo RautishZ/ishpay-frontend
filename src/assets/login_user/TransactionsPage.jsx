@@ -103,8 +103,8 @@ function TransactionsPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="pb-10 text-black w-full flex justify-center py-4 px-2">
+    <div className="">
+      <div className=" text-black w-full flex justify-center">
         <div className="w-full flex-col rounded-lg">
           <div className="text-2xl font-semibold text-center py-3 bg-secondary-200 rounded-t-lg">
             Transaction History

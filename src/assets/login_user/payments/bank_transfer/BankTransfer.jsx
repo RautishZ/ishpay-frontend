@@ -77,8 +77,8 @@ const BankTransfer = () => {
 
   return (
     <div className="">
-      <div className="border-2 border-secondary-200">
-        <div className="py-2 text-2xl font-semibold text-center bg-secondary-200">
+      <div className="border-2 border-secondary-200 rounded-t-lg">
+        <div className="text-2xl font-semibold text-center py-3 bg-secondary-200">
           <h1>Transfer Funds</h1>
         </div>
 

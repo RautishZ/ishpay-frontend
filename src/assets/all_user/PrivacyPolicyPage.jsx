@@ -340,7 +340,7 @@ const PrivacyPolicyPage = () => {
         </section>
 
         <section>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 font-semibold text-center">
             Thank you for trusting IshPay with your financial transactions. Your
             privacy and security are our top priorities.
           </p>

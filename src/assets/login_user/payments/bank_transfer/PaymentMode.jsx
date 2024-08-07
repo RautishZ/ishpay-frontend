@@ -1,11 +1,11 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 
-import credit_card from "../../static/images/credit_card.png";
-import net_banking from "../../static/images/net_banking.png";
-import wallet_payment from "../../static/images/wallet_payment.png";
-import pay_later from "../../static/images/pay_later.png";
-import EMI from "../../static/images/EMI.png";
+import credit_card from "../../../static/images/credit_card.png";
+import net_banking from "../../../static/images/net_banking.png";
+import wallet_payment from "../../../static/images/wallet_payment.png";
+import pay_later from "../../../static/images/pay_later.png";
+import EMI from "../../../static/images/EMI.png";
 
 const PaymentMode = ({
   selectedMethod,
