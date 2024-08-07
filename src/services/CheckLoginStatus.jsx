@@ -34,8 +34,6 @@ const CheckLoginStatus = ({ children }) => {
           ) {
             navigate("/home");
           }
-        } else if (window.location.pathname !== "/signup") {
-          navigate("/login");
         }
       } catch (error) {
         console.error("Authentication error:", error);
