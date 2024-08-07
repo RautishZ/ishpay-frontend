@@ -147,7 +147,7 @@ const AboutUsPage = () => {
               support@ishpay.com
             </a>
           </div>
-          <div className="flex items-center space-x-4 text-gray-700">
+          <div className="flex items-center space-x-4 text-gray-700 mb-4">
             <FaInstagram className="text-xl" />
             <a
               href="https://www.instagram.com/ish.pay"
@@ -158,6 +158,19 @@ const AboutUsPage = () => {
               Follow us on Instagram
             </a>
           </div>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-200 pb-2">
+            Operational Address
+          </h2>
+          <p className="text-lg text-gray-700">
+            IshPay Pvt. Ltd.
+            <br />
+            Ward-14, Chandi Road Harnaut,
+            <br />
+            Nalanda, Bihar, India 803110
+          </p>
         </section>
 
         <section>
